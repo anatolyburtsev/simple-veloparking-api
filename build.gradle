@@ -1,0 +1,81 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.0.M4'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath('se.transmode.gradle:gradle-docker:1.2')
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'docker'
+
+group = 'ru.onotole'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-actuator:2.0.0.M4')
+//	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-web:2.0.0.M4')
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.2'
+    compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
+    compile group: 'com.netflix.feign', name: 'feign-gson', version: '8.18.0'
+    compileOnly "org.projectlombok:lombok:1.16.18"
+	testCompile('org.springframework.boot:spring-boot-starter-test:2.0.0.M4')
+    compile 'io.springfox:springfox-swagger2:2.6.1'
+    compile 'io.springfox:springfox-swagger-ui:2.6.1'
+
+    // testing
+    testCompile "org.codehaus.groovy:groovy-all:2.4.4"
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+    testCompile "com.jayway.jsonpath:json-path-assert:2.0.0"
+    testCompile "org.unitils:unitils-core:3.4.2"
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-4"
+    testCompile "org.spockframework:spock-spring:1.1-groovy-2.4-rc-4"
+    testCompile "com.github.tomakehurst:wiremock-standalone:2.6.0"
+    testCompile "org.springframework.restdocs:spring-restdocs-mockmvc:1.1.2.RELEASE"
+    testCompile "org.springframework.restdocs:spring-restdocs-core:1.1.2.RELEASE"
+}
+
+idea {
+	module {
+		inheritOutputDirs = false
+		outputDir = file("$buildDir/classes/main/")
+	}
+}
+
+// docker
+jar {
+	baseName = 'velo_parking'
+}
+
+task buildDocker(type: Docker, dependsOn: build) {
+	push = true
+	applicationName = jar.baseName
+	dockerfile = file('src/main/docker/Dockerfile')
+	doFirst {
+		copy {
+			from jar
+			into stageDir
+		}
+	}
+}
