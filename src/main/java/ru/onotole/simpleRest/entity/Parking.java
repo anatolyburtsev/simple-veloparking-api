@@ -18,5 +18,4 @@ public class Parking {
 
     @SerializedName("TotalPlaces")
     private Integer totalPlaces;
-
 }

@@ -8,9 +8,12 @@ import lombok.ToString;
 import java.util.List;
 
 @Getter
-@AllArgsConstructor
 @ToString
 public class ParkingItems {
+    public ParkingItems(List<Parking> items) {
+        this.items = items;
+    }
+
     @SerializedName("Items")
     private List<Parking> items;
 }

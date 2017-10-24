@@ -6,11 +6,9 @@ spring:
 
 velobikeurl:
   host: http://apivelobike.velobike.ru
-#  path: /ride/parkings
 
 ---
 spring.profiles: test
 
 velobikeurl:
   host: http://localhost:4567
-#  path: /ride/parkings

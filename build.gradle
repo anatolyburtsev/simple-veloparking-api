@@ -21,8 +21,8 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'docker'
 
-group = 'ru.onotole'
-version = '0.0.1-SNAPSHOT'
+group = 'onotolemobile'
+version = '0.0.2-snapshot'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -34,19 +34,17 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-actuator:2.0.0.M4')
-//	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web:2.0.0.M4')
     compile group: 'com.google.code.gson', name: 'gson', version: '2.8.2'
     compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
     compile group: 'com.netflix.feign', name: 'feign-gson', version: '8.18.0'
     compileOnly "org.projectlombok:lombok:1.16.18"
-	testCompile('org.springframework.boot:spring-boot-starter-test:2.0.0.M4')
     compile 'io.springfox:springfox-swagger2:2.6.1'
     compile 'io.springfox:springfox-swagger-ui:2.6.1'
 
     // testing
     testCompile "org.codehaus.groovy:groovy-all:2.4.4"
-    testCompile "org.springframework.boot:spring-boot-starter-test"
+	testCompile('org.springframework.boot:spring-boot-starter-test:2.0.0.M4')
     testCompile "com.jayway.jsonpath:json-path-assert:2.0.0"
     testCompile "org.unitils:unitils-core:3.4.2"
     testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-4"
@@ -65,7 +63,7 @@ idea {
 
 // docker
 jar {
-	baseName = 'velo_parking'
+	baseName = 'velobikesimplerest'
 }
 
 task buildDocker(type: Docker, dependsOn: build) {

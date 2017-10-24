@@ -63,7 +63,7 @@ public class VeloService {
         IParkingItems parkingItems = Feign.builder()
             .decoder(new GsonDecoder())
             .target(IParkingItems.class, velobikeApiUrl.getHost());
-        log.warning(parkingItems.parkings().toString());
+        log.warning("velobike API response: " + parkingItems.parkings().toString());
         return parkingItems.parkings();
     }
 
