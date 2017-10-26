@@ -22,7 +22,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'docker'
 
 group = 'onotolemobile'
-version = '0.0.5-snapshot'
+version = '0.0.7-snapshot'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 

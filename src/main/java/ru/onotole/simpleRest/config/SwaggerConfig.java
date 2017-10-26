@@ -29,7 +29,7 @@ public class SwaggerConfig {
             "Spring Boot REST API to show my power",
             "1.0",
             "Terms of service",
-            new Contact("Burtsev Anatolii", "https://blah/", "anatolyburtsev@yandex.ru"),
+            new Contact("Burtsev Anatolii", "https://www.linkedin.com/in/anatolii-burtsev/", "anatolyburtsev@yandex.ru"),
             "Apache License Version 2.0",
             "https://www.apache.org/licenses/LICENSE-2.0");
     }
