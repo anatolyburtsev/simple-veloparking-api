@@ -31,4 +31,10 @@ public class VeloParkingController {
     ) {
         return veloService.getNearestParking(lat, lon, needFreePlace);
     }
+
+    @GetMapping(value = "/health")
+    @ApiOperation(value = "dummy controller to check alive")
+    public String health() {
+        return "I'm ok";
+    }
 }
