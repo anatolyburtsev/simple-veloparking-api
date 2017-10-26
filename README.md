@@ -8,6 +8,7 @@
 
 **LOOK THROUGH CONTROLLERS WITH SWAGGER**
 
+Just open in browser: `localhost:8080/`
 
 **RUN TESTS**
 
